@@ -36,7 +36,7 @@ ds18b20.sensors(function(err, ids) {
                     console.log("body:", body)
                 } else {
                     console.log("err:");
-                    console.log(error);
+                    console.log(response);
                 }
             }
         );
