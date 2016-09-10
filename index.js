@@ -28,7 +28,7 @@ ds18b20.sensors(function(err, ids) {
 
         //Send to warp
         request.post(
-            'http://rcdinfo.fr:8101/api/v0/update',
+            'http://rcdinfo.fr:8100/api/v0/update',
             (ts + "// temp{uid=" + sonde + "} " + value),
             
             function (error, response, body) {
