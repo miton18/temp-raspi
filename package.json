@@ -9,6 +9,7 @@
   "author": "miton18 <rcd18@hotmail.fr>",
   "license": "MIT",
   "dependencies": {
-    "ds18b20": "^0.1.0"
+    "ds18b20": "^0.1.0",
+    "request": "^2.74.0"
   }
 }

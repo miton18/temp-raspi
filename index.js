@@ -1,6 +1,7 @@
 
 
 var ds18b20 = require('ds18b20');
+var request = require('request');
 
 var sonde = "";
 
@@ -24,6 +25,20 @@ ds18b20.sensors(function(err, ids) {
         }
         ts  = new Date().getTime();
         console.log(ts, value); 
+
+        //Send to warp
+        request.post(
+            'http://rcdinfo.fr:8101/api/v0/update',
+            (ts + "// temp{uid=" + sonde + "} " + value),
+            
+            function (error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    console.log(body)
+                } else {
+                    console.log(error, response);
+                }
+            }
+        );
       });
   }, 10000);
 });
