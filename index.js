@@ -43,7 +43,7 @@ ds18b20.sensors(function(err, ids) {
                 console.log("sent")
             } else {
                 console.log("temp err:");
-                console.log(response);
+                console.log(error);
             }
         });
 
@@ -75,7 +75,7 @@ if( testHumiditySensor ) {
               console.log("sent")
           } else {
               console.log("humi err:");
-              console.log(response);
+              console.log(error);
           }
       });
     }, 10000);
