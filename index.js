@@ -41,7 +41,8 @@ ds18b20.sensors(function(err, ids) {
 
         }, function (error, response, body) {
             if (!error && response.statusCode == 200) {
-                console.log("sent")
+                console.log("sent");
+                console.log(body)
             } else {
                 console.log("temp err:");
                 console.log(error);
