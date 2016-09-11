@@ -6,6 +6,7 @@ var sensorLib = require('node-dht-sensor');
 
 var sonde = "";
 var wToken = process.env.WTOKEN;
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
 ds18b20.sensors(function(err, ids) {
   
