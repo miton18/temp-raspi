@@ -66,7 +66,7 @@ if( testHumiditySensor ) {
       request({
 
           method: 'POST',
-          url: 'https://e-warp.rcdinfo.fr/api/v0/update',
+          url: 'http://rcdinfo.fr:8100/api/v0/update',
           headers: {
               'X-Warp10-Token': wToken
           },
