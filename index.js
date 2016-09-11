@@ -31,7 +31,7 @@ ds18b20.sensors(function(err, ids) {
 
         request({
 
-            url: 'httpq://warp.rcdinfo.fr/api/v0/update',
+            url: 'https://warp.rcdinfo.fr/api/v0/update',
             headers: {
                 'X-Warp10-Token': wToken
             },
@@ -51,10 +51,26 @@ ds18b20.sensors(function(err, ids) {
 });
 
 testHumiditySensor = sensorLib.initialize(11, 17);
-console.log("hum", testHumiditySensor);
+console.log("DHT11 detected:", testHumiditySensor);
 
 if( testHumiditySensor ) {
-    readout = sensorLib.read();
-    console.log(readout);
-    console.log(readout.humidity.toFixed(2))
+    setInterval(function(){
+
+      request({
+
+          url: 'https://warp.rcdinfo.fr/api/v0/update',
+          headers: {
+              'X-Warp10-Token': wToken
+          },
+          body: ts + "// hum{uid=" + sonde + "} " + sensorLib.read().humidity.toFixed(2)
+
+      }, function (error, response, body) {
+          if (!error && response.statusCode == 200) {
+              console.log("sent")
+          } else {
+              console.log("err:");
+              console.log(response);
+          }
+      });
+    }, 10000);
 }
