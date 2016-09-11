@@ -8,7 +8,7 @@ var sonde = "";
 var wToken = process.env.WTOKEN;
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
-/*ds18b20.sensors(function(err, ids) {
+ds18b20.sensors(function(err, ids) {
   
   if (err) {
       console.error(err);
@@ -42,7 +42,6 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
         }, function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 console.log("sent");
-                console.log(body)
             } else {
                 console.log("temp err:");
                 console.log(error);
@@ -51,7 +50,7 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
       });
   }, 10000);
-});*/
+});
 
 testHumiditySensor = sensorLib.initialize(11, 17);
 console.log("DHT11 detected:", testHumiditySensor);
@@ -75,7 +74,6 @@ if( testHumiditySensor ) {
       }, function (error, response, body) {
           if (!error && response.statusCode == 200) {
               console.log("sent");
-              console.log(JSON.stringify(response))
           } else {
               console.log("humi err:");
               console.log(error);
