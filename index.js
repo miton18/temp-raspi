@@ -31,6 +31,7 @@ ds18b20.sensors(function(err, ids) {
 
         request({
 
+            method: 'POST',
             url: 'https://e-warp.rcdinfo.fr/api/v0/update',
             headers: {
                 'X-Warp10-Token': wToken
@@ -62,6 +63,7 @@ if( testHumiditySensor ) {
 
       request({
 
+          method: 'POST',
           url: 'https://e-warp.rcdinfo.fr/api/v0/update',
           headers: {
               'X-Warp10-Token': wToken
