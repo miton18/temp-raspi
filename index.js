@@ -31,17 +31,17 @@ ds18b20.sensors(function(err, ids) {
 
         request({
 
-            url: 'https://warp.rcdinfo.fr/api/v0/update',
+            url: 'https://e-warp.rcdinfo.fr/api/v0/update',
             headers: {
                 'X-Warp10-Token': wToken
             },
-            body: ts + "// temp{uid=" + sonde + "} " + value
+            body: ts + "000// temp{uid=" + sonde + "} " + value
 
         }, function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 console.log("sent")
             } else {
-                console.log("err:");
+                console.log("temp err:");
                 console.log(response);
             }
         });
@@ -62,17 +62,17 @@ if( testHumiditySensor ) {
 
       request({
 
-          url: 'https://warp.rcdinfo.fr/api/v0/update',
+          url: 'https://e-warp.rcdinfo.fr/api/v0/update',
           headers: {
               'X-Warp10-Token': wToken
           },
-          body: ts + "// hum{uid=" + sonde + "} " + value
+          body: ts + "000// hum{uid=" + sonde + "} " + value
 
       }, function (error, response, body) {
           if (!error && response.statusCode == 200) {
               console.log("sent")
           } else {
-              console.log("err:");
+              console.log("humi err:");
               console.log(response);
           }
       });
