@@ -2,6 +2,7 @@
 
 var ds18b20 = require('ds18b20');
 var request = require('request');
+var sensorLib = require('node-dht-sensor');
 
 var sonde = "";
 var wToken = process.env.WTOKEN;
@@ -28,23 +29,9 @@ ds18b20.sensors(function(err, ids) {
         ts  = new Date().getTime();
         console.log(ts, value); 
 
-        //Send to warp
-        /*request.post(
-            'http://rcdinfo.fr:8100/api/v0/update',
-            (ts + "// temp{uid=" + sonde + "} " + value),
-            
-            function (error, response, body) {
-                if (!error && response.statusCode == 200) {
-                    console.log("body:", body)
-                } else {
-                    console.log("err:");
-                    console.log(response);
-                }
-            }
-        );*/
         request({
 
-            url: 'http://rcdinfo.fr:8100/api/v0/update',
+            url: 'httpq://warp.rcdinfo.fr/api/v0/update',
             headers: {
                 'X-Warp10-Token': wToken
             },
@@ -52,7 +39,7 @@ ds18b20.sensors(function(err, ids) {
 
         }, function (error, response, body) {
             if (!error && response.statusCode == 200) {
-                console.log("body:", body)
+                console.log("sent")
             } else {
                 console.log("err:");
                 console.log(response);
@@ -62,3 +49,12 @@ ds18b20.sensors(function(err, ids) {
       });
   }, 10000);
 });
+
+testHumiditySensor = sensorLib.initialize(11, 17);
+console.log("hum", testHumiditySensor);
+
+if( testHumiditySensor ) {
+    readout = sensorLib.read();
+    console.log(readout);
+    console.log(readout.humidity.toFixed(2))
+}
