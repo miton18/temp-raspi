@@ -27,7 +27,7 @@ ds18b20.sensors(function(err, ids) {
           console.error(err);
           return;
         }
-        ts  = Date.setUTCHours(-2).now();
+        ts  = Date.now() + 2*3600 *1000;
         console.log('Temp:', ts, value); 
 
         request({
@@ -58,7 +58,7 @@ console.log("DHT11 detected:", testHumiditySensor);
 if( testHumiditySensor ) {
     setInterval(function(){
 
-      ts  = Date.setUTCHours(-2).now();
+      ts  = Date.now()  + 2*3600 *1000;
       value = sensorLib.read().humidity.toFixed(2)
       console.log('Humi:', ts, value);
 
